@@ -30,6 +30,6 @@ jobs:
         - ./devtools/bin/vpc /h
         - ./creategameprojects
       script:
-        - make -f games.mak NO_CHROOT=1
+        - make -f games.mak NO_CHROOT=1 2> /dev/null
       after_success:
         - echo "Done" # TODO: Archive build artifacts and create a distributable zi
