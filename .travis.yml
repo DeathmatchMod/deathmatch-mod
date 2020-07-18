@@ -13,6 +13,7 @@ jobs:
   include:
     - stage: build
       name: "Build i386 Linux"
+      cache: ccache
       os: linux
       dist: bionic
       addons:
