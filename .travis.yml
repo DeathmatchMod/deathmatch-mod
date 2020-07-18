@@ -21,6 +21,8 @@ jobs:
             - libgoogle-perftools-dev:i386
             - libfreetype6-dev:i386
             - libsdl2-dev:i386
+            - gcc-multilib
+            - g++-multilib
       before_script:
         - git submodule update --remote --merge
         - cd src/
