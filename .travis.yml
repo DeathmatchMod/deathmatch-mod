@@ -1,0 +1,29 @@
+language: c
+compiler: gcc
+
+git:
+  depth: 100
+  submodules: true
+
+branches:
+  only:
+    - master
+    
+jobs:
+  include:
+    - stage: build
+      name: "Build i386 Linux"
+      os: linux
+      dist: bionic
+      addons:
+        apt:
+          packages:
+            - libgoogle-perftools-dev:i386
+            - libfreetype6-dev:i386
+            - libsdl2-dev:i386
+        before_script:
+          - cd src/
+          - ./creategameprojects
+          - make -f games.mak NO_CHROOT=1
+        after_success:
+          - echo "Done" # TODO: Archive build artifacts and create a distributable zi
