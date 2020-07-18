@@ -24,6 +24,9 @@ jobs:
       before_script:
         - git submodule update --remote --merge
         - cd src/
+        - file devtools/bin/vpc
+        - ldd devtools/bin/vpc
+        - ./devtools/bin/vpc /h
         - ./creategameprojects
       script:
         - make -f games.mak NO_CHROOT=1
