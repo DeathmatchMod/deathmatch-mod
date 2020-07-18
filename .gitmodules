@@ -1,0 +1,6 @@
+[submodule "src"]
+	path = src
+	url = https://github.com/DeathmatchMod/deathmatch-src
+[submodule "game"]
+	path = game
+	url = https://github.com/DeathmatchMod/deathmatch-game
