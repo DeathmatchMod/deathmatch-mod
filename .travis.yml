@@ -24,7 +24,7 @@ jobs:
       before_script:
         - git submodule update --remote --merge
         - cd src/
-        - git checkout devtools/bin/vpc 
+        - sha1sum ./devtools/bin/vpc
         - ./devtools/bin/vpc /h
         - ./creategameprojects
       script:
