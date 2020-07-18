@@ -21,10 +21,10 @@ jobs:
             - libgoogle-perftools-dev:i386
             - libfreetype6-dev:i386
             - libsdl2-dev:i386
-        before_script:
-          - cd src/
-          - ./creategameprojects
-        script:
-          - make -f games.mak NO_CHROOT=1
-        after_success:
-          - echo "Done" # TODO: Archive build artifacts and create a distributable zi
+      before_script:
+        - cd src/
+        - ./creategameprojects
+      script:
+        - make -f games.mak NO_CHROOT=1
+      after_success:
+        - echo "Done" # TODO: Archive build artifacts and create a distributable zi
