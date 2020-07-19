@@ -22,7 +22,7 @@ jobs:
         - ./creategameprojects.bat
       script:
         - export PATH="$MSBUILD_PATH:$PATH"
-        - MSBuild.exe games.sln
+        - MSBuild.exe -t:Rebuild -p:Configuration=Release games.sln
       after_success:
         - cd ../game/
         - tar -czvf dmo_win32.tgz ./dmo/
