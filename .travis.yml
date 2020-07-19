@@ -15,13 +15,22 @@ jobs:
       name: "Build x86 Windows"
       cache: ccache
       os: windows
+      env:
+        - MSBUILD_PATH="c:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
       before_script:
         - git submodule update --remote --merge
         - cd src
         - ./creategameprojects.bat
         - ./devtools/bin/SlnFix.exe games.sln 
       script:
-        - msbuild games.sln
+        - export PATH="$MSBUILD_PATH:$PATH"
+        - MSBuild games.sln
+      after_success:
+        - cd ../game/
+        - tar -czvf dmo_win32.tgz ./dmo/
+        - export GITHUB_TOKEN=$GH_TOKEN
+        - wget -c https://github.com/FWGS/uploadtool/raw/master/upload.sh
+        - bash upload.sh dmo_win32.tgz
     - stage: build
       name: "Build i386 Linux"
       cache: ccache
@@ -45,7 +54,7 @@ jobs:
         - make -f games.mak NO_CHROOT=1 2> /dev/null
       after_success:
         - cd ../game/
-        - tar -czvf dmo.tgz ./dmo/
+        - tar -czvf dmo_linux32.tgz ./dmo/
         - export GITHUB_TOKEN=$GH_TOKEN
         - wget -c https://github.com/FWGS/uploadtool/raw/master/upload.sh
-        - bash upload.sh dmo.tgz
+        - bash upload.sh dmo_linux32.tgz
