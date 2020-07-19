@@ -13,7 +13,6 @@ jobs:
   include:
     - stage: build-win32
       name: "Build x86 Windows"
-      cache: ccache
       os: windows
       env:
         - MSBUILD_PATH="c:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
@@ -21,7 +20,6 @@ jobs:
         - git submodule update --remote --merge
         - cd src
         - ./creategameprojects.bat
-        - ./devtools/bin/SlnFix.exe games.sln 
       script:
         - export PATH="$MSBUILD_PATH:$PATH"
         - MSBuild.exe games.sln
