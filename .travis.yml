@@ -11,6 +11,17 @@ branches:
     
 jobs:
   include:
+    - stage: build-win32
+      name: "Build x86 Windows"
+      cache: ccache
+      os: windows
+      before_script:
+        - git submodule update --remote --merge
+        - cd src
+        - .\creategameprojects.bat
+        - .\devtools\bin\SlnFix.exe games.sln 
+      script:
+        - msbuild games.sln
     - stage: build
       name: "Build i386 Linux"
       cache: ccache
@@ -34,7 +45,7 @@ jobs:
         - make -f games.mak NO_CHROOT=1 2> /dev/null
       after_success:
         - cd ../game/
-        - tar -czvf dmo_linux.tgz ./dmo/
+        - tar -czvf dmo.tgz ./dmo/
         - export GITHUB_TOKEN=$GH_TOKEN
         - wget -c https://github.com/FWGS/uploadtool/raw/master/upload.sh
-        - bash upload.sh dmo_linux.tgz
+        - bash upload.sh dmo.tgz
