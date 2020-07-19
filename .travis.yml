@@ -24,7 +24,7 @@ jobs:
         - ./devtools/bin/SlnFix.exe games.sln 
       script:
         - export PATH="$MSBUILD_PATH:$PATH"
-        - MSBuild games.sln
+        - MSBuild.exe games.sln
       after_success:
         - cd ../game/
         - tar -czvf dmo_win32.tgz ./dmo/
