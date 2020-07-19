@@ -18,8 +18,8 @@ jobs:
       before_script:
         - git submodule update --remote --merge
         - cd src
-        - creategameprojects.bat
-        - .\devtools\bin\SlnFix.exe games.sln 
+        - ./creategameprojects.bat
+        - ./devtools/bin/SlnFix.exe games.sln 
       script:
         - msbuild games.sln
     - stage: build
