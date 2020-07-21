@@ -9,6 +9,10 @@ branches:
   only:
     - master
     
+cache:
+  directories:
+    - $HOME/.cache
+    
 jobs:
   include:
     - stage: build-win32
