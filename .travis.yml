@@ -12,6 +12,10 @@ branches:
 cache:
   directories:
     - $HOME/.cache
+    - src/game/server/obj_server_deathmatch_linux32
+    - src/game/client/obj_client_deathmatch_linux32
+    - src/vgui2/vgui_controls/obj_vgui_controls_linux32
+    - src/tier1/obj_tier1_linux32
     
 jobs:
   include:
